@@ -1,0 +1,6 @@
+Project LutskHistory -  site about history of Lutsk. This is interactive application for study history of this town.
+Developers: 
+Katya Zhuk
+Daryna Zhebko
+Sergey Cherlenyuk
+Ivan Sirotyuk
