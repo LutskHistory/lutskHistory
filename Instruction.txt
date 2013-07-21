@@ -1,1 +1,1 @@
-This is dev-branch, push all commits in this branch before code-review. 
+This is testing-branch, don't push your commits in this branch. Merge with this branch only after local testing and code-review.
