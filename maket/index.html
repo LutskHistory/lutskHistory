@@ -5,10 +5,31 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>Maket</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script  src="http://api-maps.yandex.ru/1.1/index.xml?key=AO0f9lEBAAAAX8mANQIAxOmd2EGmkag-9OpOOJFjPAnOPdoAAAAAAAAAAADO0CSBYrshAKbC3nlOrdT3YrTx5g=="  type="text/javascript"></script>
+  <script src="map.js" type="text/javascript" language="JavaScript"></script>
  </head>
  <body>
- 
-
- 
+  <div id="page">
+    <div id="header"></div>
+    <div id="map-wrap">
+      <div id="map"></div>
+      <div id="map-control-panel">
+        Longitude
+        <input type="text" id="lng" value="25.311073"><br/>
+        Latitude
+        <input type="text" id="lat" value="50.745059"><br/>
+        Name
+        <input type="text" id="name" placeholder="point name"><br/>
+        Description
+        <input type="text" id="desc" placeholder="description"><br/>
+        <input type="button" value="add point" onclick="add();">
+      </div>
+    </div>
+    <div id="content-wrap">
+      <div id="content"></div>
+      <div id="scroll-bar"></div>
+    </div>
+    <div id="footer"></div>
+  </div> 
  </body>
 </html>
