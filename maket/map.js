@@ -1,32 +1,33 @@
-// Создает обработчик события window.onLoad
 var map = null;
+var points = new Array();
 
-
+// Create event handler window.onLoad
 YMaps.jQuery(function () {
 	map = new YMaps.Map(YMaps.jQuery("#map")[0]);
 	map.setCenter(new YMaps.GeoPoint(25.311073, 50.744059), 10);
-
 	map.addControl(new YMaps.Zoom());
-	//addPoint(25.311073, 50.745059, "name", "desc");
-
-	var placemark1 = new YMaps.Placemark(new YMaps.GeoPoint(25.311073, 50.745059));
-	YMaps.Events.observe(placemark1, placemark1.Events.Click, function (placemark1, e) {
-   		alert("You are clicked on placemark!");
-	});
-	map.addOverlay(placemark1);
-
-
 });
 
 //Add point to the map
 function addPoint(lng, lat, name, desc){
+	//create placemark and set property
 	var placemark = new YMaps.Placemark(new YMaps.GeoPoint(lng, lat));
-	
 	placemark.name = name;
 	placemark.description = desc;
 	placemark.setIconContent("place");
+	placemark.id = points.length;
 
+	//set  callback function to placemark
+	YMaps.Events.observe(placemark, placemark.Events.Click, placemarkCallback);
+
+	//save and display placemark
+	points.push(placemark);
 	map.addOverlay(placemark); 
+}
+
+//Placemark callback function
+function placemarkCallback(placemark, e){
+	alert(placemark.id);
 }
 
 function add(){
