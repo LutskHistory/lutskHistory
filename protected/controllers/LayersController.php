@@ -28,7 +28,7 @@ class LayersController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view', 'get'),
+				'actions'=>array('index','view', 'get', 'getPoints'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -175,12 +175,18 @@ class LayersController extends Controller
 	 *	Return all layers in json format
 	 */
 	public function actionGet(){
-		$layers = Yii::app()->db->createCommand()
-							->select()
-							->from('layers')
-							->queryAll();
-							
+		$layers = Layers::model()->get();
 		echo json_encode($layers);
-
 	}
+
+
+	/**
+	 *	Return all points on layer
+	 *	@param id - Layer id.
+	 */
+	public function actionGetPoints($id){
+		$points = Layers::model()->getPoints($id);
+		echo json_encode($points);
+	}
+
 }

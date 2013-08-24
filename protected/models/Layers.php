@@ -87,4 +87,35 @@ class Layers extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	/**
+	 *	Return all layers in json format
+	 */
+	public function get(){
+		$layers = Yii::app()->db->createCommand()
+							->select()
+							->from('layers')
+							->queryAll();
+
+		return $layers;
+	}
+
+	public function getPoints($id){
+		$pointsIDs = Yii::app()->db->createCommand()
+							   ->select('point')
+							   ->from('places')
+							   ->where('layer=:layerID', array(':layerID' => $id))
+							   ->queryAll();
+		
+		foreach ($pointsIDs as $pointID) {
+			$IDs[] = $pointID['point'];
+		}
+
+		$points = Yii::app()->db->createCommand()
+								->select()
+								->from('points')
+								->where(array('in', 'id', $IDs))
+								->queryAll();
+		return $points;
+	}
 }
