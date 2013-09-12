@@ -1,0 +1,85 @@
+/* HTML tags  */ 
+
+body{
+	height: 100;
+	margin: 0;
+	padding: 0;
+}
+
+
+/* Page  */
+#page{
+	width: 960px;
+	height: 100%;
+	margin: 0 auto;
+	background: rgb(210, 230, 250);
+	display: block;
+}
+
+
+/* header */ 
+#header{
+	width: 960px;
+	height: 150px;
+	display: block;
+	background: rgb(30, 200, 40);
+
+}
+
+/* Maps content */ 
+#map-wrap{
+	width: 960px;
+	height: 400px;
+	margin-top: 20px;
+	display: block;
+	background: rgb(10, 90, 70);
+
+}
+
+#map{
+	height: 400px;
+	width: 640px;
+	display: block;
+	float: left;
+	background: rgb(220, 90, 30);
+}
+
+#map-control-panel{
+	height: 400px;
+	width: 300px;
+	float: right;
+	display: block;
+	background: rgb(70, 230, 90);
+}
+
+/* Content */
+#content-wrap{
+	height: 500px;
+	width: 960px;
+	margin-top: 20px;
+	background: rgb(250, 50, 50);
+}
+
+#content{
+	height: 500px;
+	width: 940px;
+	float: left;
+	background: rgb(20, 90, 40);
+}
+
+#scroll-bar{
+	height: 500px;
+	width: 7px;
+	float: right;
+	margin-right: 7px;
+	background: rgb(40, 70, 250);
+}
+
+/* footer */
+#footer{
+	height: 150px;
+	width: 960px;
+	margin-top: 20px;
+	background: rgb(70, 90, 240);
+
+}
