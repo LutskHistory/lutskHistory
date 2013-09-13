@@ -105,4 +105,15 @@ class Points extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+
+	public function getPointPosts($id)
+	{
+		$posts = Yii::app()->db->createCommand()
+							   ->select('*')
+							   ->from('posts')
+							   ->where('point=:pointID', array(':pointID' => $id))
+							   ->queryAll();
+		return $posts;
+	}
 }

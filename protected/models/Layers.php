@@ -111,11 +111,14 @@ class Layers extends CActiveRecord
 			$IDs[] = $pointID['point'];
 		}
 
-		$points = Yii::app()->db->createCommand()
-								->select()
-								->from('points')
-								->where(array('in', 'id', $IDs))
-								->queryAll();
-		return $points;
+		if (!empty($IDs)){
+			$points = Yii::app()->db->createCommand()
+									->select()
+									->from('points')
+									->where(array('in', 'id', $IDs))
+									->queryAll();
+			return $points;							
+		}
+		return;
 	}
 }

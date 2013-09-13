@@ -27,7 +27,20 @@ function addPoint(lng, lat, name, desc){
 
 //Placemark callback function
 function placemarkCallback(placemark, e){
-	alert(placemark.id);
+	var data = {id : placemark.id.toString()};
+	$.ajax({
+        url: "http://lutskhistory.dev/index.php/points/getPointPosts",
+        type: "get",
+        data: data,
+        success: function(data){
+            alert(data);
+            
+        },
+        error:function(){
+            alert("failure");
+
+        }
+    });
 }
 
 function add(){

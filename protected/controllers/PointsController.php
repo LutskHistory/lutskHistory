@@ -28,7 +28,7 @@ class PointsController extends Controller
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
-				'actions'=>array('index','view'),
+				'actions'=>array('index','view', 'getPointPosts'),
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
@@ -169,5 +169,12 @@ class PointsController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+
+	public function ActionGetPointPosts($id)
+	{
+		$posts = Points::model()->getPointPosts($id);
+		echo json_encode($posts);
 	}
 }
