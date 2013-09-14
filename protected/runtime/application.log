@@ -426,3 +426,39 @@ Stack trace:
 #12 {main}
 REQUEST_URI=/index.php/points/getPointPosts
 ---
+2013/09/15 00:00:39 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\Lutskhistory.dev\www\yii\framework\web\CWebApplication.php(282): CController->run('getPointPosts')
+#9 Z:\home\Lutskhistory.dev\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('points/getPoint...')
+#10 Z:\home\Lutskhistory.dev\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 Z:\home\Lutskhistory.dev\www\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php/points/getPointPosts
+HTTP_REFERER=http://lutskhistory.dev/maket/
+---
+2013/09/15 00:00:43 [error] [exception.CHttpException.400] exception 'CHttpException' with message 'Your request is invalid.' in Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php:336
+Stack trace:
+#0 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(309): CController->invalidActionParams(Object(CInlineAction))
+#1 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilterChain.php(133): CController->runAction(Object(CInlineAction))
+#2 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilter.php(40): CFilterChain->run()
+#3 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(1145): CFilter->filter(Object(CFilterChain))
+#4 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CInlineFilter.php(58): CController->filterAccessControl(Object(CFilterChain))
+#5 Z:\home\Lutskhistory.dev\www\yii\framework\web\filters\CFilterChain.php(130): CInlineFilter->filter(Object(CFilterChain))
+#6 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(291): CFilterChain->run()
+#7 Z:\home\Lutskhistory.dev\www\yii\framework\web\CController.php(265): CController->runActionWithFilters(Object(CInlineAction), Array)
+#8 Z:\home\Lutskhistory.dev\www\yii\framework\web\CWebApplication.php(282): CController->run('getPointPosts')
+#9 Z:\home\Lutskhistory.dev\www\yii\framework\web\CWebApplication.php(141): CWebApplication->runController('points/getPoint...')
+#10 Z:\home\Lutskhistory.dev\www\yii\framework\base\CApplication.php(169): CWebApplication->processRequest()
+#11 Z:\home\Lutskhistory.dev\www\index.php(13): CApplication->run()
+#12 {main}
+REQUEST_URI=/index.php/points/getPointPosts
+HTTP_REFERER=http://lutskhistory.dev/maket/
+---

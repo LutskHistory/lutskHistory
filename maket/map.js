@@ -1,39 +1,47 @@
-var map = null;
-var points = new Array();
-var layerPointCache = Array();
+var map = null; //map handler
+var points = new Array(); //downloaded points
+var layerPointCache = Array(); //layers for which download points
+var layers = Array(); //downloaded layers
 
-// Create event handler window.onLoad
-YMaps.jQuery(function () {
-	map = new YMaps.Map(YMaps.jQuery("#map")[0]);
-	map.setCenter(new YMaps.GeoPoint(25.311073, 50.744059), 10);
-	map.addControl(new YMaps.Zoom());
+//init ymap
+ymaps.ready(function () {
+    map = new ymaps.Map("map", {
+        center: [50.744059, 25.311073],
+        zoom: 10
+     });
 });
 
 //Add point to the map
-function addPoint(id, lng, lat, name, desc, layerID){
-	//create placemark and set property
-	var placemark = new YMaps.Placemark(new YMaps.GeoPoint(lat, lng));
+function addPoint(id, lng, lat, name, desc, layerID) {
+    //create placemark and set property
+	var placemark = new ymaps.Placemark([lng, lat], {}, {preset: findLayer(layerID).icon, balloonContentLayout: createBaloon(name, desc, "")});
+
 	placemark.name = name;
 	placemark.description = desc;
-	placemark.setIconContent("place");
 	placemark.id = id;
 	placemark.layerID = layerID;
 
 	//set  callback function to placemark
-	YMaps.Events.observe(placemark, placemark.Events.Click, placemarkCallback);
+	placemark.events.add('click', placemarkCallback);
 
 	//save and display placemark
 	points.push(placemark);
-	map.addOverlay(placemark); 
+	map.geoObjects.add(placemark); 
+}
+
+//TODO
+//baloon constructor
+function createBaloon(title, desc, img){
+	html = '<h1>' + title + '</h3>' + '<p>' + desc + '</p>';
+	return ymaps.templateLayoutFactory.createClass(html);
 }
 
 //Placemark callback function
-function placemarkCallback(placemark, e){
-	var data = {id : placemark.id.toString()};
+function placemarkCallback(e){
 	$.ajax({
         url: "http://lutskhistory.dev/index.php/points/getPointPosts",
         type: "get",
-        data: data,
+        data: {id : e.get('target').id},
         success: function(data){
         	posts = JSON.parse(data);
         	for (i = 0; i < posts.length; i++){
@@ -52,14 +60,6 @@ function placemarkCallback(placemark, e){
     });
 }
 
-function add(){
-	var lng = document.getElementById("lng").value;
-	var lat = document.getElementById("lat").value;
-	var name = document.getElementById("name").value;
-	var desc = document.getElementById("desc").value;
-	addPoint(lng, lat, name, desc);
-}
-
 //Get map layer
 function getLayers(){
 	$.ajax({
@@ -75,53 +75,50 @@ function getLayers(){
         },
         error:function(){
             alert("failure");
-
         }
     });
+}
 
+//find layer by layerID
+function findLayer(layerID){
+    for (var i in layers) {
+        if (layers[i].id == layerID) return layers[i];
+    }
 }
 
 //Get points of layer
-function getLayerPoints(layerID){
-	if ($('input.layerCheckBox#' + layerID).attr('checked')){
+function getLayerPoints(layerID) {
+	if ($('input.layerCheckBox#' + layerID).attr('checked')) {
+        
+        if (layerPointCache.indexOf(layerID) > -1) {
+            for(var i in points){
+                if (points[i].layerID == layerID)
+                    map.geoObjects.add(points[i]);
+                }
+			return;
+        }
 
-		for (i = 0; i < layerPointCache.length; i++){
-			if (layerPointCache[i] == layerID){
-				for(var id in points){
-					if (points[id].layerID == layerID)
-						map.addOverlay(points[id]);
-				}
-				return;
-			}
-		}
-
-
-		var data = {id : layerID};
 		$.ajax({
 	        url: "http://lutskhistory.dev/index.php/layers/getPoints",
 	        type: "get",
-	        data: data,
+	        data: {id : layerID},
 	        success: function(data){
 	        	mapPoints = JSON.parse(data);
-	        	for (i = 0; i < mapPoints.length; i++){
+	        	for (var i in mapPoints){
 	        		addPoint(mapPoints[i].id, mapPoints[i].lng, mapPoints[i].lat, mapPoints[i].name, mapPoints[i].description, layerID);
 	        	}
 	        	layerPointCache.push(layerID);
 	        },
-
 	        error:function(data, data1, data2){
 	            alert("failure");
 	        }
 	    });
 	}
-
-	else{
-		for (i = 0; i < points.length; i++) {
-			if (points[i].layerID == layerID){
-				map.removeOverlay(points[i]);
+	else {
+		for (i in points) {
+			if (points[i].layerID == layerID) {
+				map.geoObjects.remove(points[i]);
 			}
 		};
-
 	}
-
 }

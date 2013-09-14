@@ -6,7 +6,8 @@
   <title>Maket</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-  <script  src="http://api-maps.yandex.ru/1.1/index.xml?key=AMH8MVIBAAAA76_CdwIAyemt3GsyLUHSNWw41hPty97fq94AAAAAAAAAAAAKXpTB_xTQpGZk8pwGOEMXRWFe1g=="  type="text/javascript"></script>
+  <!--<script  src="http://api-maps.yandex.ru/1.1/index.xml?key=AMH8MVIBAAAA76_CdwIAyemt3GsyLUHSNWw41hPty97fq94AAAAAAAAAAAAKXpTB_xTQpGZk8pwGOEMXRWFe1g=="  type="text/javascript"></script>-->
+  <script src="http://api-maps.yandex.ru/2.0-stable/?load=package.standard&lang=ru-RU" type="text/javascript"> </script>
   <script src="map.js" type="text/javascript" language="JavaScript"></script>
  </head>
  <body>
@@ -15,17 +16,8 @@
     <div id="map-wrap">
       <div id="map"></div>
       <div id="map-control-panel">
-        Longitude
-        <input type="text" id="lng" value="25.311073"><br/>
-        Latitude
-        <input type="text" id="lat" value="50.745059"><br/>
-        Name
-        <input type="text" id="name" placeholder="point name"><br/>
-        Description
-        <input type="text" id="desc" placeholder="description"><br/>
-        <input type="button" value="add point" onclick="add();">
-
-        <script type="text/javascript">getLayers()</script>>
+        
+        <script type="text/javascript">getLayers()</script>
         <div class="layerCheckBox"></div>
 
         
