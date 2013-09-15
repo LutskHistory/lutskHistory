@@ -175,6 +175,10 @@ class PointsController extends Controller
 	public function ActionGetPointPosts($id)
 	{
 		$posts = Points::model()->getPointPosts($id);
+
+		for ($i=0; $i < count($posts); $i++) { 
+			$posts[$i]['text'] = substr($posts[$i]['text'], 0, 400).' ...';
+		}
 		echo json_encode($posts);
 	}
 }
