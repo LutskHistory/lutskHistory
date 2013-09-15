@@ -61,6 +61,7 @@ class Points extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'authorName' => array(self::BELONGS_TO, 'Users', 'id'),
 		);
 	}
 
@@ -110,10 +111,17 @@ class Points extends CActiveRecord
 	public function getPointPosts($id)
 	{
 		$posts = Yii::app()->db->createCommand()
-							   ->select('*')
-							   ->from('posts')
-							   ->where('point=:pointID', array(':pointID' => $id))
+							   ->select(array('p.id', 'p.date', 'p.title', 'p.text', 'p.views', 'p.like', 'p.dislike', 'p.image', 'u.name'))
+							   ->from(array('posts p', 'users u'))
+							   ->where('point=:pointID and u.id=p.author', array(':pointID' => $id))
 							   ->queryAll();
+
+		/*$posts = Posts::model()->with(array(
+		    'users'=>array(
+		        'joinType'=>'INNER JOIN',
+		        'condition'=>'posts.author=users.id',
+		    ),
+		))->findAll();*/
 		return $posts;
 	}
 }

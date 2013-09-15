@@ -29,36 +29,50 @@ function addPoint(id, lng, lat, name, desc, layerID) {
 	map.geoObjects.add(placemark); 
 }
 
-//TODO
+//TODO fine html
 //baloon constructor
 function createBaloon(title, desc, img){
 	html = '<h1>' + title + '</h3>' + '<p>' + desc + '</p>';
 	return ymaps.templateLayoutFactory.createClass(html);
 }
 
+//TODO link to post
 //Placemark callback function
 function placemarkCallback(e){
+	$('div.post').css('display', 'none');
 	$.ajax({
         url: "http://lutskhistory.dev/index.php/points/getPointPosts",
         type: "get",
         data: {id : e.get('target').id},
         success: function(data){
         	posts = JSON.parse(data);
-        	for (i = 0; i < posts.length; i++){
-        		var post = "";
-        		for (var field in posts[i]){
-        			post += field + " - ";
-        		}
-        		$("div#content").append("<p>" + post + "</p>");
-        		alert(post);
+        	for (var i in posts){
+        		postHTML = '<div class="post">\
+					        <div class="postTitle">' + posts[i].title + '</div>\
+					        <div class="postDescWrap">\
+					        <img src="' + posts[i].image + '" height="128" width="128" class="postImg" />\
+					        <div class="postDesc">' + posts[i].text + '</div>\
+					        </div>\
+					        <div class="postMeta">\
+					        	<div class="postAuthor">' + posts[i].name + '</div>\
+					            <div class="postViews">Переглядів: ' + posts[i].views + '</div>\
+					            <div class="postLike">+' + posts[i].like + '</div>\
+					            <div class="postDislike">-' + posts[i].dislike + '</div>\
+					            <div class="postReadMore"><a href="#">Читати повністю...</a></div>\
+					        </div>';
+        		
+        		$("div#content").append(postHTML);
         	}
         },
-        error:function(){
+        error:function(data, data1, data2){
             alert("failure");
 
         }
     });
 }
+
+
+
 
 //Get map layer
 function getLayers(){

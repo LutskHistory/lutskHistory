@@ -1,7 +1,6 @@
 /* HTML tags  */ 
 
 body{
-	height: 100;
 	margin: 0;
 	padding: 0;
 }
@@ -10,7 +9,7 @@ body{
 /* Page  */
 #page{
 	width: 960px;
-	height: 100%;
+	/*height: 100%;*/
 	margin: 0 auto;
 	background: rgb(210, 230, 250);
 	display: block;
@@ -59,31 +58,79 @@ body{
 
 /* Content */
 #content-wrap{
-	height: 500px;
+	min-height: 1px;
 	width: 960px;
 	margin-top: 20px;
 	background: rgb(250, 50, 50);
 }
 
 #content{
-	height: 500px;
-	width: 940px;
+	/*height: 500px;*/
+	width: 960px;
 	float: left;
 	background: rgb(20, 90, 40);
 }
 
-#scroll-bar{
-	height: 500px;
-	width: 7px;
+/* Post entry */
+.post{
+	min-height: 200px;
+	width: 940px;
+}
+
+.postTitle{
+	width: 940px;
+	font-size: 16pt;
+	margin: 15px 0 0 10px;
+}
+
+.postDesc{
+	margin-right: 10px;
+}
+
+.postImg{
+	height: 128px;
+	width: 128px;
+	display: block;
+	float: left;
+	margin: 5px 15px 0 15px;
+}
+
+.postDescWrap{
+	min-height: 140px;
+}
+
+.postMeta{
+	width: 940px;
+	margin-top: 10px;
+}
+
+.postAuthor{
+	float: left;
+	margin: 0 10px 0 20px;
+}
+
+.postViews{
+	float: left;
+	margin-left: 20px;
+}
+
+.postLike{
+	float: left;
+	margin-left: 20px;
+}
+
+.postDislike{
+	float: left;
+	margin-left: 20px;
+}
+
+.postReadMore{
 	float: right;
-	margin-right: 7px;
-	background: rgb(40, 70, 250);
 }
 
 /* footer */
 #footer{
-	height: 150px;
+	margin: auto 0;
 	width: 960px;
-	margin-top: 20px;
 	background: rgb(70, 90, 240);
 }
